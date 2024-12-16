@@ -8,8 +8,18 @@ export function QuranReader() {
   const { currentSurah, currentVerse, fontSize, bookmarks, toggleBookmark } = useQuranStore();
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // Fetch verses in Arabic
   const { data: verses, isLoading } = useQuery(['surah', currentSurah], async () => {
     const response = await fetch(`https://api.alquran.cloud/v1/surah/${currentSurah}`);
+    const data = await response.json();
+    return data.data.ayahs;
+  });
+
+  // Fetch Bengali translation
+  const { data: translations } = useQuery(['translation', currentSurah], async () => {
+    const response = await fetch(
+      `https://api.alquran.cloud/v1/surah/${currentSurah}/bn.bengali`
+    );
     const data = await response.json();
     return data.data.ayahs;
   });
@@ -28,7 +38,7 @@ export function QuranReader() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="space-y-8">
-        {verses?.map((verse: Verse) => (
+        {verses?.map((verse: Verse, index) => (
           <div
             key={verse.number}
             className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
@@ -70,8 +80,9 @@ export function QuranReader() {
               className="text-gray-600 dark:text-gray-300"
               style={{ fontSize: `${fontSize * 0.9}rem` }}
             >
-              {/* Bengali translation would go here */}
-              Translation placeholder
+              {translations && translations[index]?.text
+                ? translations[index].text
+                : 'Translation not available'}
             </div>
           </div>
         ))}

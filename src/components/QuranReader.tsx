@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Play, Bookmark, Share2 } from 'lucide-react';
-import { useQuranStore } from '../store/quranStore';
+import useQuranState from '../store/quranStore';
 import type { Verse } from '../types/quran';
 
 export function QuranReader() {

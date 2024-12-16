@@ -1,6 +1,5 @@
 import React from 'react';
 import { Moon, Sun, Settings, Search } from 'lucide-react';
-import { useQuranStore } from '../store/quranStore';
 
 export function Header() {
   const { darkMode, toggleDarkMode } = useQuranStore();

@@ -37,4 +37,4 @@ const useQuranStore = create<QuranState>()(
   )
 );
 
-export default useQuranStore;
+export default useQuranStore; // Ensure it's exported here

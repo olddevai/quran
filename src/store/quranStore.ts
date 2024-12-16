@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { QuranState } from '../types/quran';
 
-const useQuranStore = create<QuranState>()(
+const useQuranState = create<QuranState>()(
   persist(
     (set) => ({
       currentSurah: 1,
@@ -37,4 +37,4 @@ const useQuranStore = create<QuranState>()(
   )
 );
 
-export default useQuranStore; // Ensure it's exported here
+export default useQuranState;

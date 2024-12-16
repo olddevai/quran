@@ -32,7 +32,9 @@ const useQuranStore = create<QuranState>()(
         })),
     }),
     {
-      name: 'quran-storage',
+      name: 'quran-storage', // Name of the key in local storage
     }
   )
 );
+
+export default useQuranStore;
